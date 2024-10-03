@@ -8,7 +8,7 @@ services:
       # Create an entrypoints "http" and "https"
       - --entrypoints.http.address=:80
       - --entryPoints.http.proxyProtocol.insecure
-      - --entryPoints.http.forwardedHeaders.insecure
+#      - --entryPoints.http.forwardedHeaders.insecure
 
       # Create an entrypoint "https" listening on port 443
       # Enable Docker in Traefik, so that it reads labels from Docker services
