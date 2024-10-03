@@ -11,6 +11,7 @@
 
     # https://www.jeffgeerling.com/blog/2018/cloning-private-github-repositories-ansible-on-remote-server-through-ssh
     - name: "Clone Git Repo"
+      become_user: "{{ my_admin_user }}"
       git:
         dest: "{{ my_git_home }}"
         repo: "{{ my_github_repo }}"
@@ -25,10 +26,11 @@
 #        owner: "{{ my_admin_user }}"
 #        group: "{{ my_admin_user }}"
 
-    - name: "Change ownership to admin user"
-      shell: "cd {{ my_admin_home }} && chown -R {{ my_admin_user }}:{{ my_admin_user }} {{ my_git_home }}"
+#    - name: "Change ownership to admin user"
+#      shell: "cd {{ my_admin_home }} && chown -R {{ my_admin_user }}:{{ my_admin_user }} {{ my_git_home }}"
 
     - name: "Build Docker Images"
+      become_user: "{{ my_admin_user }}"
       shell: "cd {{ services_home }} && ./build.sh"
 
     # https://stackoverflow.com/questions/35984151/how-to-create-new-system-service-by-ansible-playbook
