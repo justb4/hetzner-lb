@@ -1,14 +1,13 @@
 - name: "Update and (Re)Deploy Services"
   hosts: all
   gather_facts: yes
-  become_user: "{{ my_admin_user }}"
+  become: true
 
   vars_files:
     - vars/vars.yml
 
   pre_tasks:
     - name: "Populate /etc/environment"
-      become: true
       become_user: root
       lineinfile:
         dest: "/etc/environment"
@@ -18,19 +17,23 @@
       with_dict: "{{ etc_environment }}"
 
     - name: "PRE-TASK - Clone or Update Git Repo"
+      become_user: "{{ my_admin_user }}"
       git: "repo={{ my_github_repo }} dest={{ my_git_home }} version=main clone=yes force=yes accept_hostkey=True"
       tags: always
 
   post_tasks:
     - name: "POST-TASK - Clean Dangling Docker Containers and Images"
+      become_user: "{{ my_admin_user }}"
       shell: "cd {{ services_home }} && ./clean.sh && docker images"
       tags: always
 
   tasks:
     - name: "traefik"
+      become_user: "{{ my_admin_user }}"
       shell: "cd {{ services_home }}/traefik && ./start.sh && docker ps"
       tags: traefik
 
     - name: "myapp"
+      become_user: "{{ my_admin_user }}"
       shell: "cd {{ services_home }}/myapp && ./deploy.sh && docker ps"
       tags: myapp
