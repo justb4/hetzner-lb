@@ -8,7 +8,6 @@
     - vars/vars.yml
 
   tasks:
-
     # https://www.jeffgeerling.com/blog/2018/cloning-private-github-repositories-ansible-on-remote-server-through-ssh
     - name: "Clone Git Repo"
       become_user: "{{ my_admin_user }}"
@@ -19,15 +18,6 @@
         update: "yes"
         accept_hostkey: "yes"
         force: "yes"
-
-#    - name: "Ensure ownership to admin user of git dir"
-#      ansible.builtin.file:
-#        path: "{{ my_git_home }}"
-#        owner: "{{ my_admin_user }}"
-#        group: "{{ my_admin_user }}"
-
-#    - name: "Change ownership to admin user"
-#      shell: "cd {{ my_admin_home }} && chown -R {{ my_admin_user }}:{{ my_admin_user }} {{ my_git_home }}"
 
     - name: "Build Docker Images"
       become_user: "{{ my_admin_user }}"
