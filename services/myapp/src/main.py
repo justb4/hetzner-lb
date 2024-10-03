@@ -24,5 +24,13 @@ def read_root(request: Request):
     domain = request.base_url
     path = request.url.path
     client_host = request.client.host
+    headers = request.headers
+
     print(f'REQUEST domain={domain} path={path}')
-    return {"domain": domain, "path": path, "my_ip": get_ip() , "host_hostname": get_env('HOST_HOSTNAME'), "client_host": client_host}
+    return {"domain": domain,
+            "path": path,
+            "my_ip": get_ip() ,
+            "host_hostname": get_env('HOST_HOSTNAME'),
+            "client_host": client_host,
+            "headers": headers
+            }
