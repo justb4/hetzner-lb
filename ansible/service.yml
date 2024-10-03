@@ -1,0 +1,19 @@
+- name: "Start/Stop Service"
+  hosts: all
+  gather_facts: yes
+
+  vars_files:
+    - vars/vars.yml
+  # systemctl start|stop myservice.service
+  tasks:
+    - name: "stop"
+      shell: "systemctl stop myservice.service ; docker ps"
+      tags: stop
+
+    - name: "start"
+      shell: "systemctl start myservice.service ; docker ps"
+      tags: start
+
+    - name: "status"
+      shell: "systemctl status myservice.service ; docker ps"
+      tags: status

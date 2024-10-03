@@ -1,0 +1,15 @@
+# EXAMPLE FILE - your encrypted vars.yml should contain the following vars
+---
+my_ssh_pubkey_file: ~/.ssh/id_rsa.pub
+my_email: me@ergens.nl
+my_admin_user: myuser
+my_admin_home: "/home/{{ my_admin_user }}"
+my_git_home: "{{ my_admin_home }}/git"
+my_github_repo: https://github.com/justb4/hetzner-lb.git
+var_dir: /var/myserver
+logs_dir: "{{ var_dir }}/log"
+services_home: "{{ my_git_home }}/services"
+timezone: Europe/Amsterdam
+ufw_open_ports: ['22', '80', '443']
+etc_environment:
+  MY_VAR: var_val

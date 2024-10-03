@@ -1,0 +1,40 @@
+
+services:
+
+  myapp:
+
+    image: justb4/fastapi:latest
+
+    container_name: myapp
+
+    environment:
+      - TZ=Europe/Amsterdam
+      - HOST_HOSTNAME=${HOST_HOSTNAME:undef}
+
+    command: fastapi run main.py --port 8000
+
+    working_dir: "/work"
+
+    expose:
+      - "8000"
+
+    ports:
+      - "8000:8000"
+
+    labels:
+       # Enable Traefik routing on overlay service network
+       - "traefik.enable=true"
+       - "traefik.docker.network=service-network"
+
+       # Define local http router
+       - "traefik.http.routers.myapp_http.rule=PathPrefix(`/myapp`)"
+       - "traefik.http.routers.myapp_http.entrypoints=http"
+       - "traefik.http.routers.myapp_http.middlewares=secure-headers@file"
+
+    volumes:
+      - ./src:/work:rw
+
+networks:
+  default:
+    name: service-network
+    external: true
