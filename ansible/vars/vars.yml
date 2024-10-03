@@ -6,7 +6,6 @@ my_admin_user: myuser
 my_admin_home: "/home/{{ my_admin_user }}"
 my_git_home: "{{ my_admin_home }}/git"
 my_github_repo: https://github.com/justb4/hetzner-lb.git
-ansible_ssh_user: "{{ my_admin_user }}"
 var_dir: /var/myserver
 logs_dir: "{{ var_dir }}/log"
 services_home: "{{ my_git_home }}/services"

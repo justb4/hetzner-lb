@@ -1,7 +1,7 @@
 # Inspired from https://github.com/5car1z/ansible-debian-provisioning
 - name: "Ubuntu Server Setup"
   hosts: all
-  become: true
+  become_user: root
   gather_facts: yes
 
   vars_files:
@@ -45,7 +45,6 @@
 
     - name: "Populate /etc/environment"
       become: true
-      become_user: root
       lineinfile:
         dest: "/etc/environment"
         state: present
