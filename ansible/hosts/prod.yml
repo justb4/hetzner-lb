@@ -5,9 +5,9 @@ hetzner_lb:
        ansible_host: 168.119.253.171
        ansible_user: root
        ansible_python_interpreter: /usr/bin/python3
-#
-#    MYSERVER2:
-#       ansible_port: 22
-#       ansible_host: apitestbed.geonovum.nl
-#       ansible_user: root
-#       ansible_python_interpreter: /usr/bin/python3
+
+    MYSERVER2:
+       ansible_port: 22
+       ansible_host: 157.90.29.170
+       ansible_user: root
+       ansible_python_interpreter: /usr/bin/python3
