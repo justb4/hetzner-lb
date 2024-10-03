@@ -9,7 +9,7 @@ services:
 
     environment:
       - TZ=Europe/Amsterdam
-      - HOST_HOSTNAME=${HOST_HOSTNAME:undef}
+      - HOST_HOSTNAME=${HOST_HOSTNAME}
 
     command: fastapi run main.py --port 8000
 
