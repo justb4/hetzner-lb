@@ -102,7 +102,7 @@ ansible-playbook -v  service.yml -i hosts/prod.yml --tags start
 
 ## System Management
 
-Manage the remote Host OS (Ubuntu) system.
+Manage the remote (Ubuntu) system.
 
 ```
 ansible-playbook -v  system.yml -i hosts/prod.yml --tags update_packages
