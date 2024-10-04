@@ -1,13 +1,15 @@
 hetzner_lb:
   hosts:
     MYSERVER1:
-       ansible_port: 22
-       ansible_host: myserver1
-       ansible_user: root
-       ansible_python_interpreter: /usr/bin/python3
+      ansible_port: 22
+      ansible_host: myserver1
+      ansible_user: root
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_ssh_common_args: '-F ssh.cfg'
 
     MYSERVER2:
-       ansible_port: 22
-       ansible_host: myserver2
-       ansible_user: root
-       ansible_python_interpreter: /usr/bin/python3
+      ansible_port: 22
+      ansible_host: myserver2
+      ansible_user: root
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_ssh_common_args: '-F ssh.cfg'
