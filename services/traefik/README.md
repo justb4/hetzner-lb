@@ -6,6 +6,10 @@
 
 `docker exec -it traefik tail -f /var/log/traefik/traefik.log` 
 
+or 
+
+`docker logs --follow traefik`
+
 ## Dynamic File Provider
 
 See `--providers.file.directory=/etc/traefikdyn` in docker-compose.yml.
