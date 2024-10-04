@@ -2,16 +2,16 @@
 
 PoC to investigate using an Hetzner Load Balancer (LB) for the following items/issues/questions:
 
-* Overall working
-* Hetzner private network, howto
+* [x] Overall working
+* [x] Hetzner private network, howto
+* [x] Hetzner private network VMs: SSH access from outside (stepping stone VM + .ssh/config with `ProxyJump`)
 * Attaching Hetzner Dedicated servers to private network (vSwitch)
-* Hetzner private network VMs: SSH access from outside (stepping stone VM?)
 * Hetzner private network VMs: Ansible access from GitHub Workflows
 * TLS endpoint in LB with external DNS
-* Backend services: is Real URL propagated?
+* [x] Backend services: is Real URL propagated?
 * Backend services: Traefik routing, can we use subdomains?
-* Backend services: is Real Client IP propagated?
-* Backend Traefik access log: is Real Client IP logged (for metering) ?
+* [x] Backend services: is Real Client IP propagated?
+* [x] Backend Traefik access log: is Real Client IP logged (for metering) ?
 * Backend services: how to enable CORS?
 
 ## Setup

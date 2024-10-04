@@ -36,6 +36,12 @@
 
   tasks:
 
+    - name: Set authorized key for GH Action user
+      ansible.posix.authorized_key:
+        user: myuser
+        key: "{{ lookup('file', 'vars/sshkey.rsa.pub') }}"
+        state: present
+
     - name: "Set global env vars"
       lineinfile:
         dest: /etc/environment

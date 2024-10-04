@@ -1,0 +1,7 @@
+hetzner_stepstone:
+  hosts:
+    STEPSTONE:
+       ansible_port: 22
+       ansible_host: stepstone
+       ansible_user: root
+       ansible_python_interpreter: /usr/bin/python3
