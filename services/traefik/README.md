@@ -6,9 +6,7 @@
 
 `docker exec -it traefik tail -f /var/log/traefik/traefik.log` 
 
-or 
-
-`docker logs --follow traefik`
+or `docker logs --follow traefik`.
 
 ## Dynamic File Provider
 
