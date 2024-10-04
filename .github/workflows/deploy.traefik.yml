@@ -26,5 +26,6 @@ jobs:
         directory: ./ansible
         key: ${{secrets.ANSIBLE_SSH_PRIVATE_KEY}}
         options: |
+          -i hosts/prod.yml
           --tags traefik
           --verbose
