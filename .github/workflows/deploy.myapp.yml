@@ -23,10 +23,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # Only way for ansible to pick up privkey file...
       - name: Set up SSH
         run: |
-          echo "${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}" > private_key.pem
-          chmod 600 private_key.pem
+          mkdir ~/.ssh
+          echo "${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
       - name: Install Ansible
         shell: bash
@@ -38,4 +41,4 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
         run: |
-          ansible-playbook -i hosts/prod.yml -t myapp --key-file private_key.pem -vvv deploy.yml
+          ansible-playbook -i hosts/prod.yml -t myapp -v deploy.yml

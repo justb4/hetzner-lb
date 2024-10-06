@@ -1,4 +1,4 @@
 #!/bin/bash
 
 export HOST_HOSTNAME=$(hostname)
-docker compose rm --force --stop
+docker compose down --remove-orphans
