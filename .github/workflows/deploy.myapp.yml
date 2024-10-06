@@ -36,7 +36,6 @@ jobs:
 
       - name: Run Ansible Playbook
         env:
-          ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
           ANSIBLE_HOST_KEY_CHECKING: False
         run: |
-          ansible-playbook -i hosts/prod.yml -t traefik --private-key private_key.pem deploy.yml
+          ansible-playbook -i hosts/prod.yml -t myapp --private-key private_key.pem -vvv deploy.yml
