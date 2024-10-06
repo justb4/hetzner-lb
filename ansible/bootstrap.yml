@@ -36,9 +36,15 @@
 
   tasks:
 
-    - name: Set authorized key for GH Action user
+    - name: Set authorized key for GH Action user admin
       ansible.posix.authorized_key:
-        user: myuser
+        user: "{{ my_admin_user }}"
+        key: "{{ lookup('file', 'vars/sshkey.rsa.pub') }}"
+        state: present
+
+    - name: Set authorized key for GH Action user root
+      ansible.posix.authorized_key:
+        user: "root"
         key: "{{ lookup('file', 'vars/sshkey.rsa.pub') }}"
         state: present
 
