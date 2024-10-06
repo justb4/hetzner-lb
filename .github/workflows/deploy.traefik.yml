@@ -26,6 +26,7 @@ jobs:
         run: |
           echo "${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}" > private_key.pem
           chmod 600 private_key.pem
+          mkdir ~/.ssh
           cp private_key.pem ~/.ssh/id_rsa
 
       - name: Install Ansible
