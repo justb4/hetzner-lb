@@ -5,26 +5,38 @@
 #
 name: MyApp Deploy ⚙️
 
+
 # Trigger only when services/myapp subdir changed
 on:
+  workflow_dispatch:
+    branches: [ main ]
   push:
     paths:
       - 'services/myapp/**'
 
 jobs:
   main:
-    runs-on: ubuntu-20.04
-
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: ./ansible
     steps:
-    - name: Checkout ✅
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up SSH
+        run: |
+          echo "${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
 
-    - name: Run playbook ⚙
-      uses: dawidd6/action-ansible-playbook@v2
-      with:
-        playbook: deploy.yml
-        directory: ./ansible
-        key: ${{secrets.ANSIBLE_SSH_PRIVATE_KEY}}
-        options: |
-          --tags myapp
-          --verbose
+      - name: Install Ansible
+        shell: bash
+        run: |
+          sudo apt update
+          sudo apt install -y ansible
+
+      - name: Run Ansible Playbook
+        env:
+          ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
+          ANSIBLE_HOST_KEY_CHECKING: False
+        run: |
+          ansible-playbook -i hosts/prod.yml -t myapp --private-key private_key.pem -u ${{ secrets.ANSIBLE_USER }} -v deploy.yml

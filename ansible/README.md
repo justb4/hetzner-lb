@@ -63,6 +63,7 @@ ansible-galaxy install --roles-path ./roles -r requirements.yml
 
 # Bootstrap servers with Ubuntu core packages
 ansible-playbook -v bootstrap.yml -i hosts/prod.yml
+ansible-playbook -v bootstrap.yml -i hosts/stepstone.yml
 
 # if first time connecting (IP not yet in known_hosts)
 # Are you sure you want to continue connecting (yes/no/[fingerprint])
