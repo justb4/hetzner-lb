@@ -38,4 +38,4 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
         run: |
-          ansible-playbook -i hosts/prod.yml -t myapp --private-key private_key.pem -vvv deploy.yml
+          ansible-playbook -i hosts/prod.yml -t myapp --key-file private_key.pem -vvv deploy.yml
