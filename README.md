@@ -5,8 +5,9 @@ PoC to investigate using an Hetzner Load Balancer (LB) for the following items/i
 * [x] Overall working
 * [x] Hetzner private network, howto
 * [x] Hetzner private network VMs: SSH access from outside (stepping stone VM + .ssh/config with `ProxyJump`)
+* [x] Hetzner private network VMs: how to access (internet) outside subnets
 * Attaching Hetzner Dedicated servers to private network (vSwitch)
-* Hetzner private network VMs: Ansible access from GitHub Workflows
+* [x] Hetzner private network VMs: Ansible access from GitHub Workflows
 * TLS endpoint in LB with external DNS
 * [x] Backend services: is Real URL propagated?
 * Backend services: Traefik routing, can we use subdomains?
@@ -27,3 +28,7 @@ VMs are quickly [bootstrapped](ansible/bootstrap.yml) and [installed](ansible/in
 Each VM runs a [systemd service](ansible/templates/systemd.service.j2) such that all Docker Containers are started at reboot.
 
 TODO: use Terraform/OpenTofu for provisioning all resources (VMs, LB, networks etc)
+
+## Gotchas
+
+* when using Hetzner Private Network, VMs cannot connect outside subnets (need router VM or use Primary IP with Firewall)
