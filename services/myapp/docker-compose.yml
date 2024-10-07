@@ -27,7 +27,7 @@ services:
        - "traefik.docker.network=service-network"
 
        # Define local http router
-       - "traefik.http.routers.myapp_http.rule=PathPrefix(`/myapp`)"
+       - "traefik.http.routers.myapp_http.rule=Host(`s.pushlets.com`)"
        - "traefik.http.routers.myapp_http.entrypoints=http"
        - "traefik.http.routers.myapp_http.middlewares=secure-headers@file"
 
