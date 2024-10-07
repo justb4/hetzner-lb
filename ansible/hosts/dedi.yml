@@ -1,0 +1,7 @@
+hetzner_dedicated:
+  hosts:
+    DEDI_1:
+       ansible_port: 22
+       ansible_host: 136.243.172.75
+       ansible_user: root
+       ansible_python_interpreter: /usr/bin/python3

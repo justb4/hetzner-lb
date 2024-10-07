@@ -6,11 +6,13 @@ PoC to investigate using an Hetzner Load Balancer (LB) for the following items/i
 * [x] Hetzner private network, howto
 * [x] Hetzner private network VMs: SSH access from outside (stepping stone VM + .ssh/config with `ProxyJump`)
 * [x] Hetzner private network VMs: how to access (internet) outside subnets
-* Attaching Hetzner Dedicated servers to private network (vSwitch)
+* [x] Attaching Hetzner Dedicated servers to private network (vSwitch)
+* [x] Attaching Hetzner Dedicated servers to Load Balancer
+* [x] Firewalling Dedicated servers for all incoing, only access via LB and Stepstone
 * [x] Hetzner private network VMs: Ansible access from GitHub Workflows
 * [x] TLS endpoint in Load Balancer with Hetzner DNS
 * [x] Backend services: is Real URL propagated?
-* Backend services: Traefik routing, using subdomains.
+* [x] Backend services: Traefik routing, using subdomains.
 * [x] Backend services: is Real Client IP propagated?
 * [x] Backend Traefik access log: is Real Client IP logged (for metering) ?
 * Backend services: how to enable CORS?
@@ -32,3 +34,5 @@ TODO: use Terraform/OpenTofu for provisioning all resources (VMs, LB, networks e
 ## Gotchas
 
 * when using Hetzner Private Network, VMs cannot connect outside subnets (need router VM or use Primary IP with Firewall)
+* steps for dedicated server with vSwitch are quite involved, see  [tutorial](https://docs.hetzner.com/cloud/networks/connect-dedi-vswitch/).
+* last step adding line in `#/etc/systemd/network/10-enp0s31f6.network` appeared not neccessary (file did not exist)
