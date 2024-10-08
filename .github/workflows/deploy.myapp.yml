@@ -1,6 +1,4 @@
 # Ansible workflow for single service deployment.
-# Uses: https://github.com/dawidd6/action-ansible-playbook
-# Options: https://github.com/dawidd6/action-ansible-playbook/blob/master/main.js
 # Author: Just van den Broecke - 2024
 #
 name: MyApp Deploy ⚙️
