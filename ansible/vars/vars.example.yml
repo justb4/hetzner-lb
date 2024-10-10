@@ -2,6 +2,7 @@
 ---
 my_ssh_pubkey_file: ~/.ssh/id_rsa.pub
 my_admin_user: myuser
+my_email: me@myserver.com
 my_admin_home: "/home/{{ my_admin_user }}"
 my_git_home: "{{ my_admin_home }}/git"
 my_github_repo: https://github.com/justb4/hetzner-lb.git
@@ -16,19 +17,5 @@ etc_environment:
   MAIL_USER: myuser
   MAIL_SENDER: mail@sender.com
   MAIL_PASSWORD: your_mail_pass
-  MAIL_RECEIVER: mail@receiver.com
-# Users and Groups
-sansible_users_and_groups_users:
-  - name: "{{ my_admin_user }}"
-    system: yes
-    shell: /bin/bash
-    ssh_key: "{{ my_ssh_pubkey_file }}"
-    append: yes
-sansible_users_and_groups_sudoers:
-   - name: "{{ my_admin_user }}"
-     user: "%{{ my_admin_user }}"
-     runas: "ALL=(ALL)"
-     commands: "NOPASSWD: ALL"
-     append: yes
 docker_users:
   - "{{ my_admin_user }}"
