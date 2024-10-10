@@ -23,11 +23,12 @@ jobs:
         uses: actions/checkout@v4
 
       # Only way for ansible to pick up privkey file...
-      - name: Set up SSH
+      - name: Set up SSH and Ansible
         run: |
           mkdir ~/.ssh
           echo "${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.ANSIBLE_VAULT_PASSWORD }}" > ~/.vault_pass.txt
+          chmod 600 ~/.ssh/id_rsa ~/.vault_pass.txt 
 
       - name: Install Ansible
         shell: bash
@@ -38,5 +39,7 @@ jobs:
       - name: Run Ansible Playbook
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
+          ANSIBLE_VAULT_PASSWORD_FILE: ~/.vault_pass.txt
+
         run: |
           ansible-playbook -i hosts/prod.yml -t myapp -v deploy.yml

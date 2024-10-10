@@ -19,8 +19,6 @@
     # defaults: https://github.com/geerlingguy/ansible-role-docker/blob/master/defaults/main.yml
     - name: geerlingguy.docker
       tags: docker
-      docker_users:
-        - "{{ my_admin_user }}"
 
   tasks:
 
@@ -35,19 +33,3 @@
         user: "root"
         key: "{{ lookup('file', 'vars/sshkey.rsa.pub') }}"
         state: present
-
-    - name: "Set global env vars"
-      lineinfile:
-        dest: /etc/environment
-        state: present
-        regexp: '^EMAIL'
-        line: 'EMAIL={{ my_email }}'
-
-    - name: "Populate /etc/environment"
-      become: true
-      lineinfile:
-        dest: "/etc/environment"
-        state: present
-        regexp: "^{{ item.key }}="
-        line: "{{ item.key }}={{ item.value}}"
-      with_dict: "{{ etc_environment }}"

@@ -42,8 +42,13 @@ ansible-core==2.17.4
 
 ## Setup
 
-Hetzner: VMs and LB in private network.
-Local config SSH file.
+* Hetzner: VMs and LB in private network.
+* Local config SSH file.
+* Ansible Vault to encrypt sensitive files, mainly `vars/vars.yml`
+* `echo "myAnsiblePw" > <my_vault_file>.txt`
+* make new `vars.yml` from `vars.example.yml`, fill in your values
+* `ansible-vault encrypt --vault-password-file <my_vault_file>.txt` vars/vars.yml`
+* in `ansible-playbook` commands add param: `--vault-password-file <my_vault_file>.txt`
 
 ## Install required Ansible Roles
 
